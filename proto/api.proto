@@ -77,9 +77,9 @@ message PostSubmitRequest {
   TransactionMessage transaction = 1 [(google.api.field_behavior) = REQUIRED];
   bool skipPreFlight = 2;
   optional bool frontRunningProtection = 3;
-  optional uint64 tip = 4;
-  optional bool useStakedRPCs = 6;
-  optional bool fastBestEffort = 7;
+  reserved 4, 6, 7;
+  reserved "tip", "useStakedRPCs", "fastBestEffort";
+  optional bool experimentalFrontRunningProtection = 8;
 }
 
 message PostSubmitRequestEntry {
