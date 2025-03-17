@@ -28,7 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ApiClient interface {
 	PostSubmitV2(ctx context.Context, in *PostSubmitRequest, opts ...grpc.CallOption) (*PostSubmitResponse, error)
-	PostSubmitBatchV2(ctx context.Context, in *PostSubmitBatchRequest, opts ...grpc.CallOption) (*PostSubmitBatchResponse, error)
+	PostSubmitBatchV2(ctx context.Context, in *PostSubmitBatchRequest, opts ...grpc.CallOption) (*PostSubmitResponse, error)
 }
 
 type apiClient struct {
@@ -48,8 +48,8 @@ func (c *apiClient) PostSubmitV2(ctx context.Context, in *PostSubmitRequest, opt
 	return out, nil
 }
 
-func (c *apiClient) PostSubmitBatchV2(ctx context.Context, in *PostSubmitBatchRequest, opts ...grpc.CallOption) (*PostSubmitBatchResponse, error) {
-	out := new(PostSubmitBatchResponse)
+func (c *apiClient) PostSubmitBatchV2(ctx context.Context, in *PostSubmitBatchRequest, opts ...grpc.CallOption) (*PostSubmitResponse, error) {
+	out := new(PostSubmitResponse)
 	err := c.cc.Invoke(ctx, Api_PostSubmitBatchV2_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -62,7 +62,7 @@ func (c *apiClient) PostSubmitBatchV2(ctx context.Context, in *PostSubmitBatchRe
 // for forward compatibility
 type ApiServer interface {
 	PostSubmitV2(context.Context, *PostSubmitRequest) (*PostSubmitResponse, error)
-	PostSubmitBatchV2(context.Context, *PostSubmitBatchRequest) (*PostSubmitBatchResponse, error)
+	PostSubmitBatchV2(context.Context, *PostSubmitBatchRequest) (*PostSubmitResponse, error)
 	mustEmbedUnimplementedApiServer()
 }
 
@@ -73,7 +73,7 @@ type UnimplementedApiServer struct {
 func (UnimplementedApiServer) PostSubmitV2(context.Context, *PostSubmitRequest) (*PostSubmitResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostSubmitV2 not implemented")
 }
-func (UnimplementedApiServer) PostSubmitBatchV2(context.Context, *PostSubmitBatchRequest) (*PostSubmitBatchResponse, error) {
+func (UnimplementedApiServer) PostSubmitBatchV2(context.Context, *PostSubmitBatchRequest) (*PostSubmitResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostSubmitBatchV2 not implemented")
 }
 func (UnimplementedApiServer) mustEmbedUnimplementedApiServer() {}

@@ -60,7 +60,7 @@ service Api {
     };
   }
 
-  rpc PostSubmitBatchV2(PostSubmitBatchRequest) returns (PostSubmitBatchResponse) {
+  rpc PostSubmitBatchV2(PostSubmitBatchRequest) returns (PostSubmitResponse) {
     option (google.api.http) = {
       post: "/api/v2/submit-batch"
       body: "*"
@@ -85,30 +85,10 @@ message PostSubmitRequest {
 
 message PostSubmitRequestEntry {
   TransactionMessage transaction = 1 [(google.api.field_behavior) = REQUIRED];
-  bool skipPreFlight = 2;
-}
-
-enum SubmitStrategy {
-  P_UKNOWN = 0;
-  P_SUBMIT_ALL = 1;
-  P_ABORT_ON_FIRST_ERROR = 2;
-  P_WAIT_FOR_CONFIRMATION = 3;
 }
 
 message PostSubmitBatchRequest {
   repeated PostSubmitRequestEntry entries = 1;
-  SubmitStrategy submitStrategy = 2;
-  optional bool useBundle = 3;
-  optional bool frontRunningProtection = 4;
-}
-message PostSubmitBatchResponseEntry {
-  string signature = 1;
-  string error = 2;
-  bool submitted = 3;
-}
-
-message PostSubmitBatchResponse {
-  repeated PostSubmitBatchResponseEntry transactions = 1;
 }
 
 message PostSubmitResponse {
