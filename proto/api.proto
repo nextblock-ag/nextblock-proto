@@ -71,7 +71,23 @@ service Api {
       tags: ["Generic"];
     };
   }
+
+  rpc Ping(PingRequest) returns (PongResponse) {
+    option (google.api.http) = {
+      get: "/api/v2/ping"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Simple ping endpoint to check API health and keep connections alive";
+      summary: "Ping the API server";
+      tags: ["Utility"];
+    };
+  }
 }
+
+// Add these message definitions
+message PingRequest {}
+
+message PongResponse {}
 
 message PostSubmitRequest {
   TransactionMessage transaction = 1 [(google.api.field_behavior) = REQUIRED];
