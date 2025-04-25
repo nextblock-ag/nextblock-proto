@@ -97,6 +97,8 @@ message PostSubmitRequest {
   reserved "tip", "useStakedRPCs", "fastBestEffort";
   optional bool experimentalFrontRunningProtection = 8;
   optional bool snipeTransaction = 9;
+  optional bool disableRetries = 10;
+  optional bool revertOnFail = 11;
 }
 
 message PostSubmitRequestEntry {

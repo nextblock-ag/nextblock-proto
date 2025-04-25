@@ -103,6 +103,8 @@ type PostSubmitRequest struct {
 	FrontRunningProtection             *bool                  `protobuf:"varint,3,opt,name=frontRunningProtection,proto3,oneof" json:"frontRunningProtection,omitempty"`
 	ExperimentalFrontRunningProtection *bool                  `protobuf:"varint,8,opt,name=experimentalFrontRunningProtection,proto3,oneof" json:"experimentalFrontRunningProtection,omitempty"`
 	SnipeTransaction                   *bool                  `protobuf:"varint,9,opt,name=snipeTransaction,proto3,oneof" json:"snipeTransaction,omitempty"`
+	DisableRetries                     *bool                  `protobuf:"varint,10,opt,name=disableRetries,proto3,oneof" json:"disableRetries,omitempty"`
+	RevertOnFail                       *bool                  `protobuf:"varint,11,opt,name=revertOnFail,proto3,oneof" json:"revertOnFail,omitempty"`
 	unknownFields                      protoimpl.UnknownFields
 	sizeCache                          protoimpl.SizeCache
 }
@@ -168,6 +170,20 @@ func (x *PostSubmitRequest) GetExperimentalFrontRunningProtection() bool {
 func (x *PostSubmitRequest) GetSnipeTransaction() bool {
 	if x != nil && x.SnipeTransaction != nil {
 		return *x.SnipeTransaction
+	}
+	return false
+}
+
+func (x *PostSubmitRequest) GetDisableRetries() bool {
+	if x != nil && x.DisableRetries != nil {
+		return *x.DisableRetries
+	}
+	return false
+}
+
+func (x *PostSubmitRequest) GetRevertOnFail() bool {
+	if x != nil && x.RevertOnFail != nil {
+		return *x.RevertOnFail
 	}
 	return false
 }
@@ -406,16 +422,21 @@ const file_api_proto_rawDesc = "" +
 	"\n" +
 	"\tapi.proto\x12\x03api\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\r\n" +
 	"\vPingRequest\"\x0e\n" +
-	"\fPongResponse\"\xca\x03\n" +
+	"\fPongResponse\"\xc4\x04\n" +
 	"\x11PostSubmitRequest\x12?\n" +
 	"\vtransaction\x18\x01 \x01(\v2\x17.api.TransactionMessageB\x04\xe2A\x01\x02R\vtransaction\x12$\n" +
 	"\rskipPreFlight\x18\x02 \x01(\bR\rskipPreFlight\x12;\n" +
 	"\x16frontRunningProtection\x18\x03 \x01(\bH\x00R\x16frontRunningProtection\x88\x01\x01\x12S\n" +
 	"\"experimentalFrontRunningProtection\x18\b \x01(\bH\x01R\"experimentalFrontRunningProtection\x88\x01\x01\x12/\n" +
-	"\x10snipeTransaction\x18\t \x01(\bH\x02R\x10snipeTransaction\x88\x01\x01B\x19\n" +
+	"\x10snipeTransaction\x18\t \x01(\bH\x02R\x10snipeTransaction\x88\x01\x01\x12+\n" +
+	"\x0edisableRetries\x18\n" +
+	" \x01(\bH\x03R\x0edisableRetries\x88\x01\x01\x12'\n" +
+	"\frevertOnFail\x18\v \x01(\bH\x04R\frevertOnFail\x88\x01\x01B\x19\n" +
 	"\x17_frontRunningProtectionB%\n" +
 	"#_experimentalFrontRunningProtectionB\x13\n" +
-	"\x11_snipeTransactionJ\x04\b\x04\x10\x05J\x04\b\x06\x10\aJ\x04\b\a\x10\bR\x03tipR\ruseStakedRPCsR\x0efastBestEffort\"Y\n" +
+	"\x11_snipeTransactionB\x11\n" +
+	"\x0f_disableRetriesB\x0f\n" +
+	"\r_revertOnFailJ\x04\b\x04\x10\x05J\x04\b\x06\x10\aJ\x04\b\a\x10\bR\x03tipR\ruseStakedRPCsR\x0efastBestEffort\"Y\n" +
 	"\x16PostSubmitRequestEntry\x12?\n" +
 	"\vtransaction\x18\x01 \x01(\v2\x17.api.TransactionMessageB\x04\xe2A\x01\x02R\vtransaction\"O\n" +
 	"\x16PostSubmitBatchRequest\x125\n" +
