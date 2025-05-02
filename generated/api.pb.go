@@ -23,6 +23,222 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type TipFloorRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TipFloorRequest) Reset() {
+	*x = TipFloorRequest{}
+	mi := &file_api_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TipFloorRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TipFloorRequest) ProtoMessage() {}
+
+func (x *TipFloorRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TipFloorRequest.ProtoReflect.Descriptor instead.
+func (*TipFloorRequest) Descriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{0}
+}
+
+type TipFloorStreamRequest struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	UpdateFrequency string                 `protobuf:"bytes,1,opt,name=update_frequency,json=updateFrequency,proto3" json:"update_frequency,omitempty"` // e.g. "1m", "5m", "10m"
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *TipFloorStreamRequest) Reset() {
+	*x = TipFloorStreamRequest{}
+	mi := &file_api_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TipFloorStreamRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TipFloorStreamRequest) ProtoMessage() {}
+
+func (x *TipFloorStreamRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TipFloorStreamRequest.ProtoReflect.Descriptor instead.
+func (*TipFloorStreamRequest) Descriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *TipFloorStreamRequest) GetUpdateFrequency() string {
+	if x != nil {
+		return x.UpdateFrequency
+	}
+	return ""
+}
+
+type TipStats struct {
+	state                        protoimpl.MessageState `protogen:"open.v1"`
+	Time                         string                 `protobuf:"bytes,1,opt,name=time,proto3" json:"time,omitempty"`
+	LandedTips_25ThPercentile    float64                `protobuf:"fixed64,2,opt,name=landed_tips_25th_percentile,json=landedTips25thPercentile,proto3" json:"landed_tips_25th_percentile,omitempty"`
+	LandedTips_50ThPercentile    float64                `protobuf:"fixed64,3,opt,name=landed_tips_50th_percentile,json=landedTips50thPercentile,proto3" json:"landed_tips_50th_percentile,omitempty"`
+	LandedTips_75ThPercentile    float64                `protobuf:"fixed64,4,opt,name=landed_tips_75th_percentile,json=landedTips75thPercentile,proto3" json:"landed_tips_75th_percentile,omitempty"`
+	LandedTips_95ThPercentile    float64                `protobuf:"fixed64,5,opt,name=landed_tips_95th_percentile,json=landedTips95thPercentile,proto3" json:"landed_tips_95th_percentile,omitempty"`
+	LandedTips_99ThPercentile    float64                `protobuf:"fixed64,6,opt,name=landed_tips_99th_percentile,json=landedTips99thPercentile,proto3" json:"landed_tips_99th_percentile,omitempty"`
+	EmaLandedTips_50ThPercentile float64                `protobuf:"fixed64,7,opt,name=ema_landed_tips_50th_percentile,json=emaLandedTips50thPercentile,proto3" json:"ema_landed_tips_50th_percentile,omitempty"`
+	unknownFields                protoimpl.UnknownFields
+	sizeCache                    protoimpl.SizeCache
+}
+
+func (x *TipStats) Reset() {
+	*x = TipStats{}
+	mi := &file_api_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TipStats) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TipStats) ProtoMessage() {}
+
+func (x *TipStats) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TipStats.ProtoReflect.Descriptor instead.
+func (*TipStats) Descriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *TipStats) GetTime() string {
+	if x != nil {
+		return x.Time
+	}
+	return ""
+}
+
+func (x *TipStats) GetLandedTips_25ThPercentile() float64 {
+	if x != nil {
+		return x.LandedTips_25ThPercentile
+	}
+	return 0
+}
+
+func (x *TipStats) GetLandedTips_50ThPercentile() float64 {
+	if x != nil {
+		return x.LandedTips_50ThPercentile
+	}
+	return 0
+}
+
+func (x *TipStats) GetLandedTips_75ThPercentile() float64 {
+	if x != nil {
+		return x.LandedTips_75ThPercentile
+	}
+	return 0
+}
+
+func (x *TipStats) GetLandedTips_95ThPercentile() float64 {
+	if x != nil {
+		return x.LandedTips_95ThPercentile
+	}
+	return 0
+}
+
+func (x *TipStats) GetLandedTips_99ThPercentile() float64 {
+	if x != nil {
+		return x.LandedTips_99ThPercentile
+	}
+	return 0
+}
+
+func (x *TipStats) GetEmaLandedTips_50ThPercentile() float64 {
+	if x != nil {
+		return x.EmaLandedTips_50ThPercentile
+	}
+	return 0
+}
+
+type TipFloorResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Stats         []*TipStats            `protobuf:"bytes,1,rep,name=stats,proto3" json:"stats,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TipFloorResponse) Reset() {
+	*x = TipFloorResponse{}
+	mi := &file_api_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TipFloorResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TipFloorResponse) ProtoMessage() {}
+
+func (x *TipFloorResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TipFloorResponse.ProtoReflect.Descriptor instead.
+func (*TipFloorResponse) Descriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *TipFloorResponse) GetStats() []*TipStats {
+	if x != nil {
+		return x.Stats
+	}
+	return nil
+}
+
 // Add these message definitions
 type PingRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -32,7 +248,7 @@ type PingRequest struct {
 
 func (x *PingRequest) Reset() {
 	*x = PingRequest{}
-	mi := &file_api_proto_msgTypes[0]
+	mi := &file_api_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44,7 +260,7 @@ func (x *PingRequest) String() string {
 func (*PingRequest) ProtoMessage() {}
 
 func (x *PingRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[0]
+	mi := &file_api_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +273,7 @@ func (x *PingRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PingRequest.ProtoReflect.Descriptor instead.
 func (*PingRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{0}
+	return file_api_proto_rawDescGZIP(), []int{4}
 }
 
 type PongResponse struct {
@@ -68,7 +284,7 @@ type PongResponse struct {
 
 func (x *PongResponse) Reset() {
 	*x = PongResponse{}
-	mi := &file_api_proto_msgTypes[1]
+	mi := &file_api_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -80,7 +296,7 @@ func (x *PongResponse) String() string {
 func (*PongResponse) ProtoMessage() {}
 
 func (x *PongResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[1]
+	mi := &file_api_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -93,7 +309,7 @@ func (x *PongResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PongResponse.ProtoReflect.Descriptor instead.
 func (*PongResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{1}
+	return file_api_proto_rawDescGZIP(), []int{5}
 }
 
 type PostSubmitRequest struct {
@@ -111,7 +327,7 @@ type PostSubmitRequest struct {
 
 func (x *PostSubmitRequest) Reset() {
 	*x = PostSubmitRequest{}
-	mi := &file_api_proto_msgTypes[2]
+	mi := &file_api_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -123,7 +339,7 @@ func (x *PostSubmitRequest) String() string {
 func (*PostSubmitRequest) ProtoMessage() {}
 
 func (x *PostSubmitRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[2]
+	mi := &file_api_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -136,7 +352,7 @@ func (x *PostSubmitRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostSubmitRequest.ProtoReflect.Descriptor instead.
 func (*PostSubmitRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{2}
+	return file_api_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *PostSubmitRequest) GetTransaction() *TransactionMessage {
@@ -197,7 +413,7 @@ type PostSubmitRequestEntry struct {
 
 func (x *PostSubmitRequestEntry) Reset() {
 	*x = PostSubmitRequestEntry{}
-	mi := &file_api_proto_msgTypes[3]
+	mi := &file_api_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -209,7 +425,7 @@ func (x *PostSubmitRequestEntry) String() string {
 func (*PostSubmitRequestEntry) ProtoMessage() {}
 
 func (x *PostSubmitRequestEntry) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[3]
+	mi := &file_api_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -222,7 +438,7 @@ func (x *PostSubmitRequestEntry) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostSubmitRequestEntry.ProtoReflect.Descriptor instead.
 func (*PostSubmitRequestEntry) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{3}
+	return file_api_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *PostSubmitRequestEntry) GetTransaction() *TransactionMessage {
@@ -241,7 +457,7 @@ type PostSubmitBatchRequest struct {
 
 func (x *PostSubmitBatchRequest) Reset() {
 	*x = PostSubmitBatchRequest{}
-	mi := &file_api_proto_msgTypes[4]
+	mi := &file_api_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -253,7 +469,7 @@ func (x *PostSubmitBatchRequest) String() string {
 func (*PostSubmitBatchRequest) ProtoMessage() {}
 
 func (x *PostSubmitBatchRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[4]
+	mi := &file_api_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -266,7 +482,7 @@ func (x *PostSubmitBatchRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostSubmitBatchRequest.ProtoReflect.Descriptor instead.
 func (*PostSubmitBatchRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{4}
+	return file_api_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *PostSubmitBatchRequest) GetEntries() []*PostSubmitRequestEntry {
@@ -285,7 +501,7 @@ type PostSubmitResponse struct {
 
 func (x *PostSubmitResponse) Reset() {
 	*x = PostSubmitResponse{}
-	mi := &file_api_proto_msgTypes[5]
+	mi := &file_api_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -297,7 +513,7 @@ func (x *PostSubmitResponse) String() string {
 func (*PostSubmitResponse) ProtoMessage() {}
 
 func (x *PostSubmitResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[5]
+	mi := &file_api_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -310,7 +526,7 @@ func (x *PostSubmitResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostSubmitResponse.ProtoReflect.Descriptor instead.
 func (*PostSubmitResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{5}
+	return file_api_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *PostSubmitResponse) GetSignature() string {
@@ -330,7 +546,7 @@ type TransactionMessage struct {
 
 func (x *TransactionMessage) Reset() {
 	*x = TransactionMessage{}
-	mi := &file_api_proto_msgTypes[6]
+	mi := &file_api_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -342,7 +558,7 @@ func (x *TransactionMessage) String() string {
 func (*TransactionMessage) ProtoMessage() {}
 
 func (x *TransactionMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[6]
+	mi := &file_api_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -355,7 +571,7 @@ func (x *TransactionMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransactionMessage.ProtoReflect.Descriptor instead.
 func (*TransactionMessage) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{6}
+	return file_api_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *TransactionMessage) GetContent() string {
@@ -381,7 +597,7 @@ type TransactionMessageV2 struct {
 
 func (x *TransactionMessageV2) Reset() {
 	*x = TransactionMessageV2{}
-	mi := &file_api_proto_msgTypes[7]
+	mi := &file_api_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -393,7 +609,7 @@ func (x *TransactionMessageV2) String() string {
 func (*TransactionMessageV2) ProtoMessage() {}
 
 func (x *TransactionMessageV2) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[7]
+	mi := &file_api_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -406,7 +622,7 @@ func (x *TransactionMessageV2) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransactionMessageV2.ProtoReflect.Descriptor instead.
 func (*TransactionMessageV2) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{7}
+	return file_api_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *TransactionMessageV2) GetContent() string {
@@ -420,7 +636,20 @@ var File_api_proto protoreflect.FileDescriptor
 
 const file_api_proto_rawDesc = "" +
 	"\n" +
-	"\tapi.proto\x12\x03api\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\r\n" +
+	"\tapi.proto\x12\x03api\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x11\n" +
+	"\x0fTipFloorRequest\"B\n" +
+	"\x15TipFloorStreamRequest\x12)\n" +
+	"\x10update_frequency\x18\x01 \x01(\tR\x0fupdateFrequency\"\x9f\x03\n" +
+	"\bTipStats\x12\x12\n" +
+	"\x04time\x18\x01 \x01(\tR\x04time\x12=\n" +
+	"\x1blanded_tips_25th_percentile\x18\x02 \x01(\x01R\x18landedTips25thPercentile\x12=\n" +
+	"\x1blanded_tips_50th_percentile\x18\x03 \x01(\x01R\x18landedTips50thPercentile\x12=\n" +
+	"\x1blanded_tips_75th_percentile\x18\x04 \x01(\x01R\x18landedTips75thPercentile\x12=\n" +
+	"\x1blanded_tips_95th_percentile\x18\x05 \x01(\x01R\x18landedTips95thPercentile\x12=\n" +
+	"\x1blanded_tips_99th_percentile\x18\x06 \x01(\x01R\x18landedTips99thPercentile\x12D\n" +
+	"\x1fema_landed_tips_50th_percentile\x18\a \x01(\x01R\x1bemaLandedTips50thPercentile\"7\n" +
+	"\x10TipFloorResponse\x12#\n" +
+	"\x05stats\x18\x01 \x03(\v2\r.api.TipStatsR\x05stats\"\r\n" +
 	"\vPingRequest\"\x0e\n" +
 	"\fPongResponse\"\xc4\x04\n" +
 	"\x11PostSubmitRequest\x12?\n" +
@@ -447,14 +676,17 @@ const file_api_proto_rawDesc = "" +
 	"\acontent\x18\x01 \x01(\tR\acontent\x12\x1c\n" +
 	"\tisCleanup\x18\x02 \x01(\bR\tisCleanup\"0\n" +
 	"\x14TransactionMessageV2\x12\x18\n" +
-	"\acontent\x18\x01 \x01(\tR\acontent2\xc4\x04\n" +
+	"\acontent\x18\x01 \x01(\tR\acontent2\xb6\x06\n" +
 	"\x03Api\x12\x98\x01\n" +
 	"\fPostSubmitV2\x12\x16.api.PostSubmitRequest\x1a\x17.api.PostSubmitResponse\"W\x92A;\n" +
 	"\aGeneric\x12\x12Transaction submit\x1a\x1cSubmits a signed transaction\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/api/v2/submit\x12\xb8\x01\n" +
 	"\x11PostSubmitBatchV2\x12\x1b.api.PostSubmitBatchRequest\x1a\x17.api.PostSubmitResponse\"m\x92AK\n" +
 	"\aGeneric\x12\x18Transaction batch submit\x1a&Submits a batch of signed transactions\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/api/v2/submit-batch\x12\xa7\x01\n" +
 	"\x04Ping\x12\x10.api.PingRequest\x1a\x11.api.PongResponse\"z\x92Ac\n" +
-	"\aUtility\x12\x13Ping the API server\x1aCSimple ping endpoint to check API health and keep connections alive\x82\xd3\xe4\x93\x02\x0e\x12\f/api/v2/ping\x1a=\x92A:\x1a8\n" +
+	"\aUtility\x12\x13Ping the API server\x1aCSimple ping endpoint to check API health and keep connections alive\x82\xd3\xe4\x93\x02\x0e\x12\f/api/v2/ping\x12\xa8\x01\n" +
+	"\vGetTipFloor\x12\x14.api.TipFloorRequest\x1a\x15.api.TipFloorResponse\"l\x92AQ\n" +
+	"\aUtility\x12\x11Get the tip floor\x1a3Endpoint to get the last 5 minutes tip distribution\x82\xd3\xe4\x93\x02\x12\x12\x10/api/v2/tipfloor\x12E\n" +
+	"\x0eStreamTipFloor\x12\x1a.api.TipFloorStreamRequest\x1a\x15.api.TipFloorResponse0\x01\x1a=\x92A:\x1a8\n" +
 	"\x1aDetailed API documentation\x12\x1ahttps://docs.nextblock.io/B\x9c\x02\x92A\xfe\x01\x12\x9e\x01\n" +
 	"\x14NextBlock Solana API\x12-API for fastest tx delivery in all of solana.\"R\n" +
 	"\x1eNextBlock.IO API Documentation\x12\x1ahttps://docs.nextblock.io/\x1a\x14support@nextblock.io2\x031.02\x10application/json:\x10application/jsonZ$\n" +
@@ -475,32 +707,41 @@ func file_api_proto_rawDescGZIP() []byte {
 	return file_api_proto_rawDescData
 }
 
-var file_api_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_api_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_api_proto_goTypes = []any{
-	(*PingRequest)(nil),            // 0: api.PingRequest
-	(*PongResponse)(nil),           // 1: api.PongResponse
-	(*PostSubmitRequest)(nil),      // 2: api.PostSubmitRequest
-	(*PostSubmitRequestEntry)(nil), // 3: api.PostSubmitRequestEntry
-	(*PostSubmitBatchRequest)(nil), // 4: api.PostSubmitBatchRequest
-	(*PostSubmitResponse)(nil),     // 5: api.PostSubmitResponse
-	(*TransactionMessage)(nil),     // 6: api.TransactionMessage
-	(*TransactionMessageV2)(nil),   // 7: api.TransactionMessageV2
+	(*TipFloorRequest)(nil),        // 0: api.TipFloorRequest
+	(*TipFloorStreamRequest)(nil),  // 1: api.TipFloorStreamRequest
+	(*TipStats)(nil),               // 2: api.TipStats
+	(*TipFloorResponse)(nil),       // 3: api.TipFloorResponse
+	(*PingRequest)(nil),            // 4: api.PingRequest
+	(*PongResponse)(nil),           // 5: api.PongResponse
+	(*PostSubmitRequest)(nil),      // 6: api.PostSubmitRequest
+	(*PostSubmitRequestEntry)(nil), // 7: api.PostSubmitRequestEntry
+	(*PostSubmitBatchRequest)(nil), // 8: api.PostSubmitBatchRequest
+	(*PostSubmitResponse)(nil),     // 9: api.PostSubmitResponse
+	(*TransactionMessage)(nil),     // 10: api.TransactionMessage
+	(*TransactionMessageV2)(nil),   // 11: api.TransactionMessageV2
 }
 var file_api_proto_depIdxs = []int32{
-	6, // 0: api.PostSubmitRequest.transaction:type_name -> api.TransactionMessage
-	6, // 1: api.PostSubmitRequestEntry.transaction:type_name -> api.TransactionMessage
-	3, // 2: api.PostSubmitBatchRequest.entries:type_name -> api.PostSubmitRequestEntry
-	2, // 3: api.Api.PostSubmitV2:input_type -> api.PostSubmitRequest
-	4, // 4: api.Api.PostSubmitBatchV2:input_type -> api.PostSubmitBatchRequest
-	0, // 5: api.Api.Ping:input_type -> api.PingRequest
-	5, // 6: api.Api.PostSubmitV2:output_type -> api.PostSubmitResponse
-	5, // 7: api.Api.PostSubmitBatchV2:output_type -> api.PostSubmitResponse
-	1, // 8: api.Api.Ping:output_type -> api.PongResponse
-	6, // [6:9] is the sub-list for method output_type
-	3, // [3:6] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	2,  // 0: api.TipFloorResponse.stats:type_name -> api.TipStats
+	10, // 1: api.PostSubmitRequest.transaction:type_name -> api.TransactionMessage
+	10, // 2: api.PostSubmitRequestEntry.transaction:type_name -> api.TransactionMessage
+	7,  // 3: api.PostSubmitBatchRequest.entries:type_name -> api.PostSubmitRequestEntry
+	6,  // 4: api.Api.PostSubmitV2:input_type -> api.PostSubmitRequest
+	8,  // 5: api.Api.PostSubmitBatchV2:input_type -> api.PostSubmitBatchRequest
+	4,  // 6: api.Api.Ping:input_type -> api.PingRequest
+	0,  // 7: api.Api.GetTipFloor:input_type -> api.TipFloorRequest
+	1,  // 8: api.Api.StreamTipFloor:input_type -> api.TipFloorStreamRequest
+	9,  // 9: api.Api.PostSubmitV2:output_type -> api.PostSubmitResponse
+	9,  // 10: api.Api.PostSubmitBatchV2:output_type -> api.PostSubmitResponse
+	5,  // 11: api.Api.Ping:output_type -> api.PongResponse
+	3,  // 12: api.Api.GetTipFloor:output_type -> api.TipFloorResponse
+	3,  // 13: api.Api.StreamTipFloor:output_type -> api.TipFloorResponse
+	9,  // [9:14] is the sub-list for method output_type
+	4,  // [4:9] is the sub-list for method input_type
+	4,  // [4:4] is the sub-list for extension type_name
+	4,  // [4:4] is the sub-list for extension extendee
+	0,  // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_api_proto_init() }
@@ -508,14 +749,14 @@ func file_api_proto_init() {
 	if File_api_proto != nil {
 		return
 	}
-	file_api_proto_msgTypes[2].OneofWrappers = []any{}
+	file_api_proto_msgTypes[6].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_proto_rawDesc), len(file_api_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

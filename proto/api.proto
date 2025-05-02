@@ -82,6 +82,39 @@ service Api {
       tags: ["Utility"];
     };
   }
+
+  rpc GetTipFloor(TipFloorRequest) returns (TipFloorResponse) {
+    option (google.api.http) = {
+      get: "/api/v2/tipfloor"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "Endpoint to get the last 5 minutes tip distribution";
+      summary: "Get the tip floor";
+      tags: ["Utility"];
+    };
+  }
+
+  rpc StreamTipFloor(TipFloorStreamRequest) returns (stream TipFloorResponse);
+}
+
+message TipFloorRequest {}
+
+message TipFloorStreamRequest {
+  string update_frequency = 1; // e.g. "1m", "5m", "10m"
+}
+
+message TipStats {
+  string time = 1;
+  double landed_tips_25th_percentile = 2;
+  double landed_tips_50th_percentile = 3;
+  double landed_tips_75th_percentile = 4;
+  double landed_tips_95th_percentile = 5;
+  double landed_tips_99th_percentile = 6;
+  double ema_landed_tips_50th_percentile = 7;
+}
+
+message TipFloorResponse {
+  repeated TipStats stats = 1;
 }
 
 // Add these message definitions

@@ -22,6 +22,8 @@ const (
 	Api_PostSubmitV2_FullMethodName      = "/api.Api/PostSubmitV2"
 	Api_PostSubmitBatchV2_FullMethodName = "/api.Api/PostSubmitBatchV2"
 	Api_Ping_FullMethodName              = "/api.Api/Ping"
+	Api_GetTipFloor_FullMethodName       = "/api.Api/GetTipFloor"
+	Api_StreamTipFloor_FullMethodName    = "/api.Api/StreamTipFloor"
 )
 
 // ApiClient is the client API for Api service.
@@ -31,6 +33,8 @@ type ApiClient interface {
 	PostSubmitV2(ctx context.Context, in *PostSubmitRequest, opts ...grpc.CallOption) (*PostSubmitResponse, error)
 	PostSubmitBatchV2(ctx context.Context, in *PostSubmitBatchRequest, opts ...grpc.CallOption) (*PostSubmitResponse, error)
 	Ping(ctx context.Context, in *PingRequest, opts ...grpc.CallOption) (*PongResponse, error)
+	GetTipFloor(ctx context.Context, in *TipFloorRequest, opts ...grpc.CallOption) (*TipFloorResponse, error)
+	StreamTipFloor(ctx context.Context, in *TipFloorStreamRequest, opts ...grpc.CallOption) (Api_StreamTipFloorClient, error)
 }
 
 type apiClient struct {
@@ -68,6 +72,47 @@ func (c *apiClient) Ping(ctx context.Context, in *PingRequest, opts ...grpc.Call
 	return out, nil
 }
 
+func (c *apiClient) GetTipFloor(ctx context.Context, in *TipFloorRequest, opts ...grpc.CallOption) (*TipFloorResponse, error) {
+	out := new(TipFloorResponse)
+	err := c.cc.Invoke(ctx, Api_GetTipFloor_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiClient) StreamTipFloor(ctx context.Context, in *TipFloorStreamRequest, opts ...grpc.CallOption) (Api_StreamTipFloorClient, error) {
+	stream, err := c.cc.NewStream(ctx, &Api_ServiceDesc.Streams[0], Api_StreamTipFloor_FullMethodName, opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &apiStreamTipFloorClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type Api_StreamTipFloorClient interface {
+	Recv() (*TipFloorResponse, error)
+	grpc.ClientStream
+}
+
+type apiStreamTipFloorClient struct {
+	grpc.ClientStream
+}
+
+func (x *apiStreamTipFloorClient) Recv() (*TipFloorResponse, error) {
+	m := new(TipFloorResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // ApiServer is the server API for Api service.
 // All implementations must embed UnimplementedApiServer
 // for forward compatibility
@@ -75,6 +120,8 @@ type ApiServer interface {
 	PostSubmitV2(context.Context, *PostSubmitRequest) (*PostSubmitResponse, error)
 	PostSubmitBatchV2(context.Context, *PostSubmitBatchRequest) (*PostSubmitResponse, error)
 	Ping(context.Context, *PingRequest) (*PongResponse, error)
+	GetTipFloor(context.Context, *TipFloorRequest) (*TipFloorResponse, error)
+	StreamTipFloor(*TipFloorStreamRequest, Api_StreamTipFloorServer) error
 	mustEmbedUnimplementedApiServer()
 }
 
@@ -90,6 +137,12 @@ func (UnimplementedApiServer) PostSubmitBatchV2(context.Context, *PostSubmitBatc
 }
 func (UnimplementedApiServer) Ping(context.Context, *PingRequest) (*PongResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Ping not implemented")
+}
+func (UnimplementedApiServer) GetTipFloor(context.Context, *TipFloorRequest) (*TipFloorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTipFloor not implemented")
+}
+func (UnimplementedApiServer) StreamTipFloor(*TipFloorStreamRequest, Api_StreamTipFloorServer) error {
+	return status.Errorf(codes.Unimplemented, "method StreamTipFloor not implemented")
 }
 func (UnimplementedApiServer) mustEmbedUnimplementedApiServer() {}
 
@@ -158,6 +211,45 @@ func _Api_Ping_Handler(srv interface{}, ctx context.Context, dec func(interface{
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Api_GetTipFloor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TipFloorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiServer).GetTipFloor(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Api_GetTipFloor_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiServer).GetTipFloor(ctx, req.(*TipFloorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Api_StreamTipFloor_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(TipFloorStreamRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(ApiServer).StreamTipFloor(m, &apiStreamTipFloorServer{stream})
+}
+
+type Api_StreamTipFloorServer interface {
+	Send(*TipFloorResponse) error
+	grpc.ServerStream
+}
+
+type apiStreamTipFloorServer struct {
+	grpc.ServerStream
+}
+
+func (x *apiStreamTipFloorServer) Send(m *TipFloorResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 // Api_ServiceDesc is the grpc.ServiceDesc for Api service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -177,7 +269,17 @@ var Api_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "Ping",
 			Handler:    _Api_Ping_Handler,
 		},
+		{
+			MethodName: "GetTipFloor",
+			Handler:    _Api_GetTipFloor_Handler,
+		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "StreamTipFloor",
+			Handler:       _Api_StreamTipFloor_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "api.proto",
 }
